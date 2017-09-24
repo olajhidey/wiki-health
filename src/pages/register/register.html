@@ -1,0 +1,35 @@
+
+<ion-header>
+
+  <ion-navbar color= "primary">
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-label floating>
+        Email
+      </ion-label>
+      <ion-input type="email" [(ngModel)] ="register.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>
+        Password
+      </ion-label>
+      <ion-input type="password" [(ngModel)] ="register.password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button block (click)="doRegister(register.email, register.password)">Register</button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <p text-center>Already a member? <a (click)="goToLogin()">Click here</a></p>
+</ion-footer>

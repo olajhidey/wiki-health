@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+      <button ion-button menuToggle icon-only>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Wiki-Health</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only><ion-icon name="search"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <!-- <ion-list>
+    <ion-item *ngFor="let data of data" (click)="goToWord(data)">
+     <h3><strong>{{data.letter}}</strong></h3>
+    </ion-item>
+  </ion-list> -->
+
+<ion-card>
+  <ion-card-header>
+    Did you Know ?
+  </ion-card-header>
+  <ion-card-content>
+      If your suffering from a mid-afternoon slump or can’t seem to 
+      concentrate in the morning, then try chewing some gum to make you 
+      feel awake. Coventry University researchers found that chewing mint
+       flavoured gum dramatically reduced feelings of tiredness.
+        Another study on the subject found that chewing gum can improve 
+        overall test scores and memory by 35 per cent, relieve stress and
+         reduce anxiety levels.
+  </ion-card-content>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-icon name="copy" item-end large></ion-icon>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item> 
+        <ion-icon name="heart-outline" item-end large></ion-icon>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-icon name="share" item-end large></ion-icon>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+</ion-content>
