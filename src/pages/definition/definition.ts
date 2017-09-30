@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
-
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Clipboard } from '@ionic-native/clipboard';
+import { TextToSpeech } from '@ionic-native/text-to-speech';
 /**
  * Generated class for the DefinitionPage page.
  *
@@ -19,13 +21,33 @@ export class DefinitionPage {
   data = {}
 
   definition : string
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth :AuthServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth :AuthServiceProvider,
+     private social: SocialSharing, private clip: Clipboard, private text2speech: TextToSpeech, private toast: ToastController) {
   }
 
   ionViewDidLoad() {
     
     this.data = this.navParams.get('data')
     
+  }
+
+  copy(meaning){
+    let toast = this.toast.create({
+      message: 'Text copied',
+      duration: 3000
+    })
+
+    this.clip.copy(meaning).then(()=> {
+      toast.present();
+    })
+  }
+
+  speak(meaning){
+    this.text2speech.speak(meaning)
+  }
+
+  share(meaning) {
+    this.social.share(meaning, 'title')
   }
 
 }
