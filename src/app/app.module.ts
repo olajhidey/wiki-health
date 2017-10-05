@@ -15,6 +15,8 @@ import { LoginPage } from '../pages/login/login';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import {IonicStorageModule } from '@ionic/Storage';
+
 //import our firebase config at models/config
 import { firebaseConfig } from '../models/config';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
@@ -30,7 +32,11 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     HttpModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule  //import for only firebase authentication
+    AngularFireAuthModule , //import for only firebase authentication
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['indexeddb','sqlite','websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -33,6 +33,8 @@ export class SearchPage {
 
       let id;
 
+      console.log(ev)
+
     let val = ev.target.value
 
     
@@ -77,6 +79,19 @@ export class SearchPage {
         }
               
         })
+    }else if(this.searchQuery.toUpperCase().startsWith('D')) {
+      id = 4
+      this.auth.getDetails().subscribe(res=> {
+        this.items = res.word[id]
+        
+        if(val && val.trim() != '') {
+          this.items =this.items.filter((item) => {
+            return (item.word.toLowerCase().indexOf(val.toLowerCase()) > -1)
+          })
+        }
+              
+        })
+
     }
 
   

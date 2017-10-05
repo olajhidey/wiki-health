@@ -13,7 +13,7 @@
     <ion-title>Wiki-Health</ion-title>
     <ion-buttons end>
       <button ion-button icon-only><ion-icon name="search"></ion-icon></button>
-      <button ion-button icon-only><ion-icon name="more"></ion-icon></button>
+      <button ion-button icon-only (click)="openPop($event)"><ion-icon name="more"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -23,33 +23,16 @@
     <ion-card-header>Adjust text</ion-card-header>
     <ion-card-content>
         <ion-range [(ngModel)]="brightness">
-            <ion-icon range-left small name="sunny"></ion-icon>
-            <ion-icon range-right name="sunny"></ion-icon>
+            <ion-icon range-left><span class="small">A</span></ion-icon>
+            <ion-icon range-right>A</ion-icon>
         </ion-range>
     </ion-card-content>
   </ion-card>
 
   <ion-card>
-    <ion-card-header>Change font</ion-card-header>
-    <ion-card-content>
-        <ion-item>
-            <ion-label>Font</ion-label>
-            <ion-select [(ngModel)]="gaming">
-              <ion-option value="nes">NES</ion-option>
-              <ion-option value="n64">Nintendo64</ion-option>
-              <ion-option value="ps">PlayStation</ion-option>
-              <ion-option value="genesis">Sega Genesis</ion-option>
-              <ion-option value="saturn">Sega Saturn</ion-option>
-              <ion-option value="snes">SNES</ion-option>
-            </ion-select>
-          </ion-item>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
     <ion-item>
-      <ion-label>Night mode</ion-label>
-      <ion-toggle item-end checked="false"></ion-toggle>
+      <ion-icon item-start name="power" color="danger"></ion-icon>
+      Sign-Out 
     </ion-item>
   </ion-card>
 

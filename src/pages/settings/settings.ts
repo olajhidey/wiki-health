@@ -22,4 +22,8 @@ export class SettingsPage {
     console.log('ionViewDidLoad SettingsPage');
   }
 
+  openPop(ev: any) {
+    
+  }
+
 }

@@ -4,7 +4,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Clipboard } from '@ionic-native/clipboard';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
-
+import { Storage } from '@ionic/Storage';
 /**
  * Generated class for the BookPage page.
  *
@@ -26,7 +26,8 @@ export class BookPage {
   search = false
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider, 
-    private social : SocialSharing, private clip: Clipboard, private text2speech: TextToSpeech, private toast: ToastController, private modal: ModalController) {
+    private social : SocialSharing, private clip: Clipboard, private text2speech: TextToSpeech, private toast: ToastController, private modal: ModalController
+    ,public store: Storage) {
 
     let i = Math.floor(Math.random() * 10 );
 
@@ -68,10 +69,15 @@ export class BookPage {
     this.social.share(fact, 'Fact for the day');
   }
 
-  favorite() {
-    this.changeColor= true
+  favorite(fact : any) {
 
-    this.changeColor
+    this.store.set('favourite', fact).then(()=> {
+      this.toast.create({
+        message: "added to Favourites",
+        duration: 3000
+      }).present()
+    })
+
   }
 
   goToWord(i) {

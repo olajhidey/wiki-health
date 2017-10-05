@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Storage } from '@ionic/Storage';
 
-/**
- * Generated class for the FavoritePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +10,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FavoritePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  item : string
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl : ModalController, private store: Storage) {
+    
+      this.getFav();
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FavoritePage');
+
+    
+  }
+
+  getFav(){
+
+    this.store.get('favourite').then((val)=> {
+      this.item = val
+    })
+  }
+
+  search() {
+    let modal = this.modalCtrl.create('SearchPage')
+
+    modal.present();
+  }
+
+  delete(it) {
+    this.store.remove('favourite')
   }
 
 }
