@@ -14,14 +14,15 @@
 
 <ion-content padding>
 
-  <ion-card>
+  <ion-card  *ngFor="let fa of fav">
+    <ion-card-header *ngIf = "fa.title">{{fa.title}}</ion-card-header>
     <ion-card-content>
-      {{item}}
+     {{fa.meaning}}
     </ion-card-content>
     <ion-row>
         <ion-col><button ion-button icon-only clear large ><ion-icon name="copy"></ion-icon></button></ion-col>
         <ion-col><button ion-button icon-only clear large ><ion-icon name="share"></ion-icon></button></ion-col>
-        <ion-col><button ion-button icon-only clear large color="danger" (click)="delete(item)"><ion-icon name="trash"></ion-icon></button></ion-col>
+        <ion-col><button ion-button icon-only clear large color="danger" (click)="delete(fa)"><ion-icon name="trash"></ion-icon></button></ion-col>
     </ion-row>
   </ion-card>
 

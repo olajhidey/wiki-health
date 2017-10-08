@@ -50,4 +50,16 @@ export class DefinitionPage {
     this.social.share(meaning, 'title')
   }
 
+  favorite(data){
+    this.auth.createFav({
+      title: data.word,
+      meaning: data.meaning
+    });
+
+    this.toast.create({
+      message: "added to Favourites",
+      duration: 3000
+    }).present()
+  }
+
 }

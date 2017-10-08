@@ -69,14 +69,14 @@ export class BookPage {
     this.social.share(fact, 'Fact for the day');
   }
 
-  favorite(fact : any) {
+  favorite(fact) {
 
-    this.store.set('favourite', fact).then(()=> {
+      this.auth.createFav({meaning: fact})
+  
       this.toast.create({
         message: "added to Favourites",
         duration: 3000
       }).present()
-    })
 
   }
 

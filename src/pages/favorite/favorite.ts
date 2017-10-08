@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/Storage';
+import { AuthServiceProvider } from "../../providers/auth-service/auth-service"
 
 
 @IonicPage()
@@ -10,27 +11,25 @@ import { Storage } from '@ionic/Storage';
 })
 export class FavoritePage {
 
-  item : string
+ 
+  fav: any
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl : ModalController, private store: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl : ModalController, private store: Storage,
+              private auth: AuthServiceProvider) {
     
-      this.getFav();
-
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FavoritePage');
 
+   this.auth.getFavourites().then((data)=> {
+     this.fav = data
+     console.log(this.fav)
+   })
     
   }
 
-  getFav(){
-
-    this.store.get('favourite').then((val)=> {
-      this.item = val
-    })
-  }
 
   search() {
     let modal = this.modalCtrl.create('SearchPage')
@@ -39,7 +38,7 @@ export class FavoritePage {
   }
 
   delete(it) {
-    this.store.remove('favourite')
+    this.auth.deleteFav(it)
   }
 
 }
