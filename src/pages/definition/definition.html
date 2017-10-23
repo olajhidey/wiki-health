@@ -1,9 +1,3 @@
-<!--
-  Generated template for the DefinitionPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="primary">
@@ -15,7 +9,7 @@
 
 <ion-content padding>
   <ion-card class="word">
-    <ion-card-content>
+    <ion-card-content [style.fontSize]="increasefont">
       {{data.meaning}}
     </ion-card-content>
 
@@ -24,5 +18,10 @@
         <ion-col><button ion-button icon-only clear large (click)="share(data.meaning)"><ion-icon name="share"></ion-icon></button></ion-col>
         <ion-col><button ion-button icon-only clear large (click)="favorite(data)"><ion-icon name="flag"></ion-icon></button></ion-col>
     </ion-row>
+
+    <ion-range [(ngModel)]="increasefont" (tap)="showFont()">
+        <ion-icon range-left><span class="small">A</span></ion-icon>
+        <ion-icon range-right>A</ion-icon>
+    </ion-range>
   </ion-card>
 </ion-content>

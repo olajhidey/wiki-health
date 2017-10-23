@@ -20,15 +20,26 @@ export class DefinitionPage {
 
   data = {}
 
+
+  increasefont  = 35
+
+
   definition : string
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth :AuthServiceProvider,
      private social: SocialSharing, private clip: Clipboard, private text2speech: TextToSpeech, private toast: ToastController) {
+
   }
 
   ionViewDidLoad() {
     
     this.data = this.navParams.get('data')
+
     
+    
+  }
+
+  showFont() {
+    console.log(this.increasefont)
   }
 
   copy(meaning){

@@ -31,7 +31,8 @@ export class LoginPage {
     let alert = this.alertCtrl
 
     let load = this.loadCtrl.create({
-      content: 'Loading'
+      content: 'Loading',
+      enableBackdropDismiss: true
     }) 
 
     load.present()

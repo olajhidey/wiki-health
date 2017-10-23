@@ -16,32 +16,57 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class WordsPage {
 
+  id : any
+
   data = {
     id : undefined,
     letter: null
   }
 
   words = []
+  items = []
+  openSearchbar = false
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider) {
   
     this.data = this.navParams.get('data')
     
-
-  
-  
   }
 
   ionViewDidLoad() {
     this.data = this.navParams.get('data')
-    let id = this.data.id
+    this.id = this.data.id
 
     this.auth.getDetails().subscribe(res=> {
-      console.log(id)
-      this.words = res.word[id]
+      
+      this.words = res.word[this.id]
+      
       console.log(this.words)
     })
    
+  }
+
+  getItem(ev: any) {
+
+    let val = ev.target.value
+
+    this.auth.getDetails().subscribe(res=> {
+      this.words = res.word[this.id]
+
+      if(val && val.trim() != '') {
+        this.words = this.words.filter((item)=> {
+          return (item.word.toLowerCase().indexOf(val.toLowerCase()) > -1)
+        })
+      }
+    })
+  }
+
+  openSearch() {
+    this.openSearchbar = true
+  }
+
+  cancel(){
+    this.openSearchbar = false
   }
 
   goToDef(wrd){

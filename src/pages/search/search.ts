@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Clipboard } from '@ionic-native/clipboard';
 
 /**
  * Generated class for the SearchPage page.
@@ -19,7 +21,8 @@ export class SearchPage {
   searchQuery : string = ''
   items : any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private auth: AuthServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private auth: AuthServiceProvider, 
+            private social: SocialSharing, private clip: Clipboard, private toastCtrl : ToastController) {
 
  
   }
@@ -92,6 +95,33 @@ export class SearchPage {
               
         })
 
+    }else if(this.searchQuery.toUpperCase().startsWith('E')) {
+
+      id = 5
+      this.auth.getDetails().subscribe(res=> {
+        this.items = res.word[id]
+        
+        if(val && val.trim() != '') {
+          this.items =this.items.filter((item) => {
+            return (item.word.toLowerCase().indexOf(val.toLowerCase()) > -1)
+          })
+        }
+              
+    })
+
+
+    }else if(this.searchQuery.toUpperCase().startsWith('F')) {
+      id = 6
+
+      this.auth.getDetails().subscribe(res=> {
+        this.items = res.word[id]
+
+        if(val && val.trim() != '') {
+          this.items = this.items.filter((item)=> {
+            return (item.word.toLowerCase().indexOf(val.toLowerCase()) > -1)
+          })
+        }
+      })
     }
 
   
@@ -100,6 +130,26 @@ export class SearchPage {
 
   close(){
     this.viewCtrl.dismiss()
+  }
+
+  copy(item) {
+    this.clip.copy(item).then(()=> {
+      this.toastCtrl.create({
+        message: 'text has been copied!'
+      }).present()
+    })
+  }
+
+
+  share(item) {
+    this.social.share(item.meaning, item.word)
+  }
+
+  save(item) {
+    this.auth.createFav(item)
+    this.toastCtrl.create({
+      message: 'added to favourites'
+    }).present()
   }
 
 }

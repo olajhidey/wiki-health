@@ -12,17 +12,17 @@
       <ion-label float>
         Email
       </ion-label>
-      <ion-input type="email" [(ngModel)]="login.email"></ion-input>
+      <ion-input type="email" [(ngModel)]="login.email" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label float>
         Password
       </ion-label>
-      <ion-input type="password" [(ngModel)]="login.password"></ion-input>
+      <ion-input type="password" [(ngModel)]="login.password" required></ion-input>
     </ion-item>
 
     <ion-item>
-      <button ion-button block color="primary" (click)="doLogin(login.email, login.password)">Login</button>
+      <button ion-button block color="primary" (disabled) ="login.email == null || login.password == null" (click)="doLogin(login.email, login.password)" >Login</button>
     </ion-item>
   </ion-list>
 
