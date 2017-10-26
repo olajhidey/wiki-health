@@ -122,6 +122,18 @@ export class SearchPage {
           })
         }
       })
+    }else if(this.searchQuery.toUpperCase().startsWith('G')) {
+      id = 7
+
+      this.auth.getDetails().subscribe(res=> {
+        this.items = res.word[id] 
+        
+        if(val && val.trim() != '' ) {
+          this.items = this.items.filter((item)=> {
+            return (item.word.toLowerCase().indexOf(val.toLowerCase()) > -1)
+          })
+        }
+      })
     }
 
   
