@@ -134,7 +134,73 @@ export class SearchPage {
           })
         }
       })
+    }else if(this.searchQuery.toUpperCase().startsWith('H')) {
+      
+      id = 8
+
+      this.auth.getDetails().subscribe((res)=> {
+        this.items = res.word[id]
+
+        if(val && val.trim() != '') {
+          this.items = this.items.filter((item)=> {
+            return (item.word.toLowerCase().indexOf(val.toLowerCase()) > -1)
+          })
+        }
+      })
+    }else if(this.searchQuery.toUpperCase().startsWith('I')) {
+      id = 9;
+
+      this.auth.getDetails().subscribe(res=> {
+        this.items = res.word[id]
+
+        if(val && val.trim() != "" ) {
+          this.items = this.items.filter((item)=> {
+            return (item.word.toLowerCase().indexOf(val.toLowerCase()) > -1)
+          })
+        }
+      })
+    }else if(this.searchQuery.toUpperCase().startsWith('J')) {
+      id = 10;
+
+      this.auth.getDetails().subscribe(res=> {
+        this.items = res.word[id]
+
+        if(val && val.trim() != '') {
+          this.items = this.items.filter((item)=> {
+            return (item.word.toLowerCase().indexOf(val.toLowerCase()) > -1)
+          })
+
+        }
+      })
+    }else if(this.searchQuery.toUpperCase().startsWith('K')) {
+      id = 11;
+      
+    this.auth.getDetails().subscribe(res=> {
+      this.items = res.word[id]
+
+      if(val && val.trim() != '') {
+        this.items = this.items.filter((item)=> {
+          return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+        })
+
+      }
+    })
+
+    }else if(this.searchQuery.toUpperCase().startsWith('M')) {
+      id = 13
+
+      this.auth.getDetails().subscribe(res=> {
+        this.items = res.word[id]
+
+        if(val && val.trim() != '') {
+          this.items = this.items.filter((item) => {
+            return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+          })
+        }
+      })
     }
+
+
 
   
 
