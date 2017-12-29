@@ -198,6 +198,48 @@ export class SearchPage {
           })
         }
       })
+    }else if(this.searchQuery.toUpperCase().startsWith('N')) {
+
+      id = 14
+
+      this.auth.getDetails().subscribe(res=> {
+        this.items = res.word[id]
+
+        if(val && val.trim() != '') {
+          this.items = this.items.filter((item) => {
+            return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+          })
+        }
+      })
+
+    }else if(this.searchQuery.toUpperCase().startsWith('O')) {
+
+      id = 15
+      
+        this.auth.getDetails().subscribe(res=> {
+          this.items = res.word[id]
+  
+          if(val && val.trim() != '') {
+            this.items = this.items.filter((item) => {
+              return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+            })
+          }
+        })
+    }else if(this.searchQuery.toUpperCase().startsWith('P')) {
+
+
+      id = 16
+      
+        this.auth.getDetails().subscribe(res=> {
+          this.items = res.word[id]
+  
+          if(val && val.trim() != '') {
+            this.items = this.items.filter((item) => {
+              return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+            })
+          }
+        })
+
     }
 
 
