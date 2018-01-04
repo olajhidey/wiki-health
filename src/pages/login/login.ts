@@ -28,8 +28,6 @@ export class LoginPage {
 
   doLogin(email,password) {
 
-    let alert = this.alertCtrl
-
     let load = this.loadCtrl.create({
       content: 'Loading',
       enableBackdropDismiss: true
@@ -39,19 +37,28 @@ export class LoginPage {
 
     this.afauth.auth.signInWithEmailAndPassword(email, password).then(res=> {
 
+      localStorage.setItem('userid', this.afauth.auth.currentUser.uid)
+
       load.dismiss()
 
       this.navCtrl.setRoot("TabsPage")
 
     }).catch(err=> {
 
-      alert.create({
-        title: err.name,
-        message: err.message,
-        buttons: ['ok']
-      }).present()
-      
       load.dismiss()
+      this.alertCtrl.create({
+        title: 'Error',
+        message: err.message,
+        buttons: ['OK']
+      }).present()
+      // load.dismiss()
+
+      // this.alertCtrl.create({
+      //   title: 'Error',
+      //   message: err.message,
+      //   buttons: ['Ok']
+      // }).present()
+      
     })
 
     

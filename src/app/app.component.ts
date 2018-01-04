@@ -11,6 +11,7 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MyApp {
   data = []
+  userid : any 
 
   @ViewChild(Nav) nav : Nav
   rootPage:any 
@@ -31,14 +32,22 @@ export class MyApp {
   }
 
   checkAuthorization() {
+
+    this.userid = localStorage.getItem('userid')
+
+    if(this.userid == null) {
+      this.rootPage = LoginPage;
+    }else {
+      this.rootPage = 'TabsPage'
+    }
     
-      this.afauth.auth.onAuthStateChanged((user)=> {
-            if(user){
-              this.rootPage = LoginPage;
-            }else{
-              this.rootPage = 'TabsPage'
-            }
-          })
+      // this.afauth.auth.onAuthStateChanged((user)=> {
+      //       if(user){
+      //         this.rootPage = LoginPage;
+      //       }else{
+      //         this.rootPage = 'TabsPage'
+      //       }
+      //     })
          
       }
 

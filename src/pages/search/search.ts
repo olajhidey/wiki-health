@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController, ToastController } 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Clipboard } from '@ionic-native/clipboard';
+import { TextToSpeech } from '@ionic-native/text-to-speech';
 
 /**
  * Generated class for the SearchPage page.
@@ -22,7 +23,7 @@ export class SearchPage {
   items : any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private auth: AuthServiceProvider, 
-            private social: SocialSharing, private clip: Clipboard, private toastCtrl : ToastController) {
+            private social: SocialSharing, private clip: Clipboard, private toastCtrl : ToastController, private text2speech: TextToSpeech) {
 
  
   }
@@ -240,7 +241,77 @@ export class SearchPage {
           }
         })
 
-    }
+    }else if(this.searchQuery.toUpperCase().startsWith('Q')) {
+
+      id = 17
+      
+        this.auth.getDetails().subscribe(res=> {
+          this.items = res.word[id]
+  
+          if(val && val.trim() != '') {
+            this.items = this.items.filter((item) => {
+              return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+            })
+          }
+        })
+
+    }else if(this.searchQuery.toUpperCase().startsWith('R')) {
+      
+            id = 18
+            
+              this.auth.getDetails().subscribe(res=> {
+                this.items = res.word[id]
+        
+                if(val && val.trim() != '') {
+                  this.items = this.items.filter((item) => {
+                    return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+                  })
+                }
+              })
+      
+      }else if(this.searchQuery.toUpperCase().startsWith('S')) {
+        
+              id = 19
+              
+                this.auth.getDetails().subscribe(res=> {
+                  this.items = res.word[id]
+          
+                  if(val && val.trim() != '') {
+                    this.items = this.items.filter((item) => {
+                      return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+                    })
+                  }
+                })
+        
+        }else if(this.searchQuery.toUpperCase().startsWith('T')) {
+          
+                id = 20
+                
+                  this.auth.getDetails().subscribe(res=> {
+                    this.items = res.word[id]
+            
+                    if(val && val.trim() != '') {
+                      this.items = this.items.filter((item) => {
+                        return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+                      })
+                    }
+                  })
+          
+        }else if(this.searchQuery.toUpperCase().startsWith('U')) {
+          
+                id = 21
+                
+                  this.auth.getDetails().subscribe(res=> {
+                    this.items = res.word[id]
+            
+                    if(val && val.trim() != '') {
+                      this.items = this.items.filter((item) => {
+                        return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+                      })
+                    }
+                  })
+          
+              }
 
 
 
@@ -270,6 +341,10 @@ export class SearchPage {
     this.toastCtrl.create({
       message: 'added to favourites'
     }).present()
+  }
+
+  speak(fact){
+    this.text2speech.speak(fact)
   }
 
 }

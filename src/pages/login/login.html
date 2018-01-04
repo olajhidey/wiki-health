@@ -22,7 +22,7 @@
     </ion-item>
 
     <ion-item>
-      <button ion-button block color="primary" (disabled) ="login.email == null || login.password == null" (click)="doLogin(login.email, login.password)" >Login</button>
+      <button ion-button block color="primary" [disabled] ="login.email == null || login.password == null" (click)="doLogin(login.email, login.password)" >Login</button>
     </ion-item>
   </ion-list>
 

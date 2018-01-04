@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/Storage';
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service"
+import { TextToSpeech } from '@ionic-native/text-to-speech';
 
 
 @IonicPage()
@@ -16,7 +17,7 @@ export class FavoritePage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl : ModalController, private store: Storage,
-              private auth: AuthServiceProvider) {
+              private auth: AuthServiceProvider, private text2speech: TextToSpeech) {
     
   }
 
@@ -39,6 +40,10 @@ export class FavoritePage {
 
   delete(it) {
     this.auth.deleteFav(it)
+  }
+
+  speak(data){
+    this.text2speech.speak(data)
   }
 
 }

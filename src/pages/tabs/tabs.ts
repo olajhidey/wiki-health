@@ -13,7 +13,14 @@ export class TabsPage {
   tab2: string = "FavoritePage"
   tab3: string = "SettingsPage"
 
+  
+  mySelectedIndex: number;
+  
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+ 
+    this.mySelectedIndex = navParams.data.tabIndex || 0;
+ 
   }
 
   ionViewDidLoad() {

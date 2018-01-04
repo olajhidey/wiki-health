@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-card class="word">
-    <ion-card-content [style.fontSize]="increasefont">
+    <ion-card-content>
       {{data.meaning}}
     </ion-card-content>
 
@@ -17,11 +17,7 @@
         <ion-col><button ion-button icon-only clear large (click)="copy(data.meaning)"><ion-icon name="copy"></ion-icon></button></ion-col>
         <ion-col><button ion-button icon-only clear large (click)="share(data.meaning)"><ion-icon name="share"></ion-icon></button></ion-col>
         <ion-col><button ion-button icon-only clear large (click)="favorite(data)"><ion-icon name="flag"></ion-icon></button></ion-col>
+        <ion-col><button ion-button icon-only clear large (click)="speak(data.meaning)"><ion-icon name="volume-up"></ion-icon></button></ion-col>
     </ion-row>
-
-    <ion-range [(ngModel)]="increasefont" (tap)="showFont()">
-        <ion-icon range-left><span class="small">A</span></ion-icon>
-        <ion-icon range-right>A</ion-icon>
-    </ion-range>
   </ion-card>
 </ion-content>

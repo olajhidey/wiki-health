@@ -15,7 +15,7 @@
 <ion-content padding>
 
   <ion-card  *ngFor="let fa of fav">
-    <ion-card-header *ngIf = "fa.word">{{fa.word}}</ion-card-header>
+    <ion-card-header>{{fa.title}}</ion-card-header>
     <ion-card-content>
      {{fa.meaning}}
     </ion-card-content>
@@ -23,6 +23,7 @@
         <ion-col><button ion-button icon-only clear large ><ion-icon name="copy"></ion-icon></button></ion-col>
         <ion-col><button ion-button icon-only clear large ><ion-icon name="share"></ion-icon></button></ion-col>
         <ion-col><button ion-button icon-only clear large color="danger" (click)="delete(fa)"><ion-icon name="trash"></ion-icon></button></ion-col>
+        <ion-col><button ion-button icon-only clear large (click)="speak(fa.meaning)"><ion-icon name="volume-up"></ion-icon></button></ion-col>
     </ion-row>
   </ion-card>
 

@@ -55,7 +55,8 @@ export class RegisterPage {
 
       this.alertCtrl.create({
         title: 'Error',
-        message: err.message
+        message: err.message,
+        buttons: ['OK']
       }).present()
 
     })
