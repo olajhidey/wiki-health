@@ -42,11 +42,18 @@ export class RegisterPage {
     this.afauth.auth.createUserWithEmailAndPassword(email,password).then((res)=> {
 
         load.dismiss()
+
+        localStorage.setItem('userid', this.afauth.auth.currentUser.uid)
         
       this.alertCtrl.create({
         title: 'Success',
         message: 'Account created successfully',
-        buttons: ['ok']
+        buttons: [{
+          text: 'Ok',
+          handler: ()=> {
+            this.navCtrl.setRoot("TabsPage")
+          }
+        }]
       }).present()
 
     }).catch(err=> {

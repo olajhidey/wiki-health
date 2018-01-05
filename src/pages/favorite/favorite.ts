@@ -43,7 +43,10 @@ export class FavoritePage {
   }
 
   speak(data){
-    this.text2speech.speak(data)
+    this.text2speech.speak({
+      text: data,
+      rate: 0.75
+    })
   }
 
 }

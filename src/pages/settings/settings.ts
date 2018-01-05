@@ -44,7 +44,7 @@ export class SettingsPage {
     this.auth.auth.signOut().then(res=> {
       load.dismiss() 
       localStorage.removeItem('userid')
-      this.nav.getRootNavById('LoginPage')
+      this.navCtrl.push(LoginPage)
     }).catch(err => {
       load.dismiss()
       alert(err.message)

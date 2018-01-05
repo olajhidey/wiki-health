@@ -311,7 +311,77 @@ export class SearchPage {
                     }
                   })
           
+      }else if(this.searchQuery.toUpperCase().startsWith('V')) {
+        
+              id = 22
+              
+                this.auth.getDetails().subscribe(res=> {
+                  this.items = res.word[id]
+          
+                  if(val && val.trim() != '') {
+                    this.items = this.items.filter((item) => {
+                      return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+                    })
+                  }
+                })
+        
+    }else if(this.searchQuery.toUpperCase().startsWith('W')) {
+      
+            id = 23
+            
+              this.auth.getDetails().subscribe(res=> {
+                this.items = res.word[id]
+        
+                if(val && val.trim() != '') {
+                  this.items = this.items.filter((item) => {
+                    return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+                  })
+                }
+              })
+      
+  }else if(this.searchQuery.toUpperCase().startsWith('X')) {
+    
+          id = 24
+          
+            this.auth.getDetails().subscribe(res=> {
+              this.items = res.word[id]
+      
+              if(val && val.trim() != '') {
+                this.items = this.items.filter((item) => {
+                  return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+                })
               }
+            })
+    
+}else if(this.searchQuery.toUpperCase().startsWith('Y')) {
+  
+        id = 25
+        
+          this.auth.getDetails().subscribe(res=> {
+            this.items = res.word[id]
+    
+            if(val && val.trim() != '') {
+              this.items = this.items.filter((item) => {
+                return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+              })
+            }
+          })
+  
+}else if(this.searchQuery.toUpperCase().startsWith('Z')) {
+  
+        id = 26
+        
+          this.auth.getDetails().subscribe(res=> {
+            this.items = res.word[id]
+    
+            if(val && val.trim() != '') {
+              this.items = this.items.filter((item) => {
+                return (item.word.toLowerCase().indexOf(val.toLowerCase())  > -1)
+              })
+            }
+          })
+  
+}
 
 
 
@@ -344,7 +414,10 @@ export class SearchPage {
   }
 
   speak(fact){
-    this.text2speech.speak(fact)
+    this.text2speech.speak({
+      text: fact,
+      rate: 0.75
+    })
   }
 
 }

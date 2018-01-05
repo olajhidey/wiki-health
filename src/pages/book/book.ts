@@ -29,7 +29,7 @@ export class BookPage {
     private social : SocialSharing, private clip: Clipboard, private text2speech: TextToSpeech, private toast: ToastController, private modal: ModalController
     ,public store: Storage) {
 
-    let i = Math.floor(Math.random() * 10 );
+    let i = Math.floor(Math.random() * 20 );
 
     this.auth.getDetails().subscribe(res => {
       this.data = res.data
@@ -40,7 +40,18 @@ export class BookPage {
   }
 
   ionViewDidLoad() {
+    console.log('i am here')
     this.auth.getDetails()
+  }
+
+  ionViewDidEnter() {
+    let i = Math.floor(Math.random() * 20 );
+    
+        this.auth.getDetails().subscribe(res => {
+          this.data = res.data
+          this.facts = res.facts[i].data
+         
+        })
   }
 
   doSearch() {
@@ -62,7 +73,10 @@ export class BookPage {
   }
 
   speak(fact){
-    this.text2speech.speak(fact)
+    this.text2speech.speak({
+      text: fact,
+      rate: 0.75
+    })
   }
 
   share(fact){

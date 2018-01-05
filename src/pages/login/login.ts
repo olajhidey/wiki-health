@@ -1,26 +1,32 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, Platform } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
 export class LoginPage {
 
+  public unregisterBackButtonAction: any;
+
   login = {}
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService : AuthServiceProvider, public loadCtrl: LoadingController,
-            public alertCtrl : AlertController, public afauth : AngularFireAuth) {
+            public alertCtrl : AlertController, public afauth : AngularFireAuth, private platform: Platform) {
   }
 
   ionViewDidLoad() {
+    this.initializeBackButtonCustomHandler();
     
   }
+
+  ionViewWillLeave() {
+    // Unregister the custom back button action for this page
+    this.unregisterBackButtonAction && this.unregisterBackButtonAction();
+}
 
   goToRegister(){
     this.navCtrl.push('RegisterPage')
@@ -60,14 +66,16 @@ export class LoginPage {
       // }).present()
       
     })
-
-    
-
-
-
- 
-
-   
   }
+
+  fgtPass() {
+    this.navCtrl.push('ForgotPage')
+  }
+  
+     initializeBackButtonCustomHandler(): void {
+         this.unregisterBackButtonAction = this.platform.registerBackButtonAction(function(event){
+             console.log('Prevent Back Button Page Change');
+         }, 101); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file */
+     }       
 
 }

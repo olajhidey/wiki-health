@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-navbar color="primary">
+<ion-header >
+  <ion-navbar color="primary" hideBackButton= "true">
     <ion-title>Login</ion-title>
   </ion-navbar>
 
@@ -25,6 +25,8 @@
       <button ion-button block color="primary" [disabled] ="login.email == null || login.password == null" (click)="doLogin(login.email, login.password)" >Login</button>
     </ion-item>
   </ion-list>
+
+  <p text-center style="color:#488aff" (click)="fgtPass()">Forgot password</p>
 
   <p text-center>Create an Account <span style="color:#488aff" (click)="goToRegister()">Here</span></p>
   

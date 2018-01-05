@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser'
 /**
  * Generated class for the ReferencePage page.
  *
@@ -15,11 +15,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ReferencePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab : InAppBrowser) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReferencePage');
+  }
+
+
+  openWeb() {
+
+  this.iab.create("https://www.medicinenet.com",
+    '_blank'
+    )
   }
 
 }

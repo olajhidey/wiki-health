@@ -54,7 +54,10 @@ export class DefinitionPage {
   }
 
   speak(meaning){
-    this.text2speech.speak(meaning)
+    this.text2speech.speak({
+      text: meaning,
+      rate: 0.75
+    })
   }
 
   share(meaning) {
